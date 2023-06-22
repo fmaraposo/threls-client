@@ -37,8 +37,13 @@ li {
 	flex-direction: row;
 	flex-wrap: wrap;
 	align-items: flex-start;
+	justify-content: flex-end;
 	margin: 10px 0;
 	padding: 10px;
+}
+
+.calendar__container__add {
+	display: 'none'
 }
 
 .calendar__container > * > * {
@@ -79,11 +84,17 @@ li {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(15%, -50%);
-	width: 500px;
+	transform: translate(0%, -50%);
+	width: 20vw;
+	max-height: 70vh;
 	background-color: white;
 	border: 2px solid #000;
 	box-shadow: 24;
+	border-radius: 10px;
+}
+
+.MuiDialogActions-root .MuiDialogActions-spacing .MuiPickersLayout-actionBar .css-hlj6pa-MuiDialogActions-root {
+	display: none
 }
 
 .modal-header {
@@ -112,4 +123,29 @@ li {
 	background: none;
 	font-size: 15px;
 	cursor: pointer;
+}
+
+@media (max-width: 760px) {
+	/* For Mobile */
+
+	.app-container {
+		display: block;
+	}
+
+	.calendar__container__content {
+		flex-direction: unset;
+		max-width: 50vw;
+	}
+
+	.calendar__container__add {
+		display: 'block'
+	}
+
+	.model-dialog {
+		max-width: 80vw;
+	}
+}
+
+@media (min-width: 761px) and (max-width: 1200px) {
+	/* For tablet */
 }
