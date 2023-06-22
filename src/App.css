@@ -12,12 +12,18 @@ li {
 .app-container {
 	display: flex;
 	justify-content: space-between;
-	width: 50vw;
-	height: 60vh;
-	border: 1px solid black;
+	width: 70vw;
+	height: 65vh;
 	border-radius: 50px;
 	padding: 40px;
 	background-color: white;
+	-webkit-box-shadow: 4px 6px 20px 0px rgba(191, 191, 191, 1);
+	-moz-box-shadow: 4px 6px 20px 0px rgba(191, 191, 191, 1);
+	box-shadow: 4px 6px 20px 0px rgba(191, 191, 191, 1);
+}
+
+.calendar {
+	border-left: 1px solid rgba(89, 89, 87, 0.5)
 }
 
 .calendar header {
@@ -39,11 +45,10 @@ li {
 	align-items: flex-start;
 	justify-content: flex-end;
 	margin: 10px 0;
-	padding: 10px;
 }
 
 .calendar__container__add {
-	display: 'none'
+	display: none;
 }
 
 .calendar__container > * > * {
@@ -57,7 +62,8 @@ li {
 	flex-direction: column;
 	flex-grow: 100;
 	align-items: stretch;
-	padding-top: 1em;
+	padding-top: 2em;
+	padding-left: 3em;
 }
 
 .calendar__container__content .react-calendar {
@@ -68,16 +74,21 @@ li {
 .events-list-container {
 	display: flex;
 	flex-direction: column;
+	/* border: 1px solid black */
 }
 
 .logo-container {
 	display: flex;
-	justify-content: center;
 }
 
 .list-events-container {
 	display: flex;
 	margin-top: 30px;
+}
+
+.no-events-container {
+	border: 1px solid black;
+	width: 80%
 }
 
 .model-dialog {
@@ -91,10 +102,14 @@ li {
 	border: 2px solid #000;
 	box-shadow: 24;
 	border-radius: 10px;
+	padding: 20px
 }
 
-.MuiDialogActions-root .MuiDialogActions-spacing .MuiPickersLayout-actionBar .css-hlj6pa-MuiDialogActions-root {
-	display: none
+.MuiDialogActions-root
+	.MuiDialogActions-spacing
+	.MuiPickersLayout-actionBar
+	.css-hlj6pa-MuiDialogActions-root {
+	display: none;
 }
 
 .modal-header {
@@ -102,7 +117,7 @@ li {
 	flex-direction: row-reverse;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px;
+	padding:20px;
 	border-bottom: 1px solid black;
 }
 
@@ -121,7 +136,7 @@ li {
 .close {
 	border: none;
 	background: none;
-	font-size: 15px;
+	font-size: 20px;
 	cursor: pointer;
 }
 
@@ -138,7 +153,7 @@ li {
 	}
 
 	.calendar__container__add {
-		display: 'block'
+		display: 'block';
 	}
 
 	.model-dialog {

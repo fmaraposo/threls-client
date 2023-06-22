@@ -3,6 +3,7 @@ import { Modal, TextField, Button } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { useForm, Controller } from 'react-hook-form'
 import { TimePicker, LocalizationProvider, DatePicker } from '@mui/x-date-pickers'
+import { Cancel } from '@mui/icons-material'
 
 const inputStyles = {
 	margin: 1,
@@ -29,7 +30,7 @@ const FormModal = ({ openModal, setOpenModal }) => {
 			<div className="model-dialog">
 				<div className="modal-header">
 					<button onClick={handleClose} className="close">
-						x
+						<Cancel />
 					</button>
 					<h3>Add your event</h3>
 				</div>
@@ -52,6 +53,7 @@ const FormModal = ({ openModal, setOpenModal }) => {
 								render={({ field: { onChange, value } }) => (
 									<DatePicker
 										label="Event Date"
+										views={['year', 'month', 'day']}
 										value={value}
 										onChange={(date) => onChange(date)}
 										sx={inputStyles}
@@ -71,13 +73,14 @@ const FormModal = ({ openModal, setOpenModal }) => {
 								rules={{ required: true }}
 								render={({ field }) => (
 									<TimePicker
+										minutesStep={15}
 										label="Event Time"
 										value={field.value}
 										onChange={(date) => field.onChange(date)}
 										sx={inputStyles}
 										slotProps={{
 											textField: {
-												helperText: errors?.eventTime ? 'Event Date is required' : '',
+												helperText: errors?.eventTime ? 'Event Time is required' : '',
 											},
 										}}
 									/>
@@ -95,7 +98,7 @@ const FormModal = ({ openModal, setOpenModal }) => {
 							sx={inputStyles}
 						/>
 						<TextField defaultValue="" label="Notes" variant="outlined" sx={inputStyles} />
-						<Button type="submit" variant="contained">
+						<Button type="submit" variant="contained" sx={inputStyles}>
 							Submit
 						</Button>
 					</form>

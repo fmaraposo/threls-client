@@ -17,14 +17,11 @@ const CalendarComponent = () => {
 	return (
 		<div className="calendar">
 			<div className="calendar__container">
-				<Tooltip title="Add your event here">
-					<AddCircle
-						onClick={() => setOpenModal(true)}
-						className="calendar__container__add"
-						fontSize="large"
-						color="primary"
-					/>
-				</Tooltip>
+				<div className="calendar__container__add">
+					<Tooltip title="Add your event here">
+						<AddCircle onClick={() => setOpenModal(true)} fontSize="large" color="primary" />
+					</Tooltip>
+				</div>
 
 				<main className="calendar__container__content">
 					<LocalizationProvider dateAdapter={AdapterDateFns}>
