@@ -1,12 +1,15 @@
-import './App.css'
+import { Box } from '@mui/material'
 import Calendar from './components/Calendar/Calendar'
+import Events from './components/Events/EventsList'
+import './App.css'
 
 function App() {
-
 	return (
 		<>
-			<h1>Helloooo</h1>
-      <Calendar />
+			<Box className="app-container">
+				<Events />
+				<Calendar />
+			</Box>
 		</>
 	)
 }
