@@ -1,22 +1,36 @@
-import React, { useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import React, { useState } from 'react'
+import FormModal from '../Form/Form'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
 
-import './Sample.css';
+const CalendarComponent = () => {
+	const [value, setValue] = useState(new Date())
+	const [openModal, setOpenModal] = useState(false)
 
-export default function Sample() {
-  const [value, onChange] = useState(new Date());
-
-  return (
-    <div className="Sample">
-      <header>
-        <h1>Set your event here</h1>
-      </header>
-      <div className="Sample__container">
-        <main className="Sample__container__content">
-          <Calendar onChange={onChange} showWeekNumbers value={value} onClickDay={(e) => alert(e)} />
-        </main>
-      </div>
-    </div>
-  );
+	return (
+		<div className="calendar">
+			<header>
+				<h1>Set your event here</h1>
+			</header>
+			<div className="calendar__container">
+				<main className="calendar__container__content">
+					<LocalizationProvider dateAdapter={AdapterDateFns}>
+						<DateCalendar
+							value={value}
+							onChange={(newValue) => {
+                setOpenModal(true)
+                setValue(newValue)
+              }}
+						/>
+					</LocalizationProvider>
+				</main>
+			</div>
+			{openModal && (
+				<FormModal openModal={openModal} setOpenModal={setOpenModal} />
+			)}
+		</div>
+	)
 }
+
+export default CalendarComponent
