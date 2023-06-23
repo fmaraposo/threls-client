@@ -1,18 +1,13 @@
 import React, { useState } from 'react'
 import FormModal from '../Form/Form'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker'
-import { AddCircle } from '@mui/icons-material'
-import { Tooltip } from '@mui/material'
+import { AddCircle, EventAvailable } from '@mui/icons-material'
+import { Tooltip, Button } from '@mui/material'
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css'
 
-const CustomActionBar = () => {
-	return null
-}
-
-const CalendarComponent = () => {
-	const [value, setValue] = useState(new Date())
+const CalendarComponent = ({ setDate, date }) => {
 	const [openModal, setOpenModal] = useState(false)
+	const handleChange = (e) => setDate(e)
 
 	return (
 		<div className="calendar">
@@ -21,22 +16,22 @@ const CalendarComponent = () => {
 					<Tooltip title="Add your event here">
 						<AddCircle onClick={() => setOpenModal(true)} fontSize="large" color="primary" />
 					</Tooltip>
+					<Button type="submit" variant="contained" onClick={() => setOpenModal(true)}>
+						<EventAvailable sx={{ marginRight: 1 }} />
+						Add your Event
+					</Button>
 				</div>
 
 				<main className="calendar__container__content">
-					<LocalizationProvider dateAdapter={AdapterDateFns}>
-						<StaticDatePicker
-							value={value}
-							onChange={(newValue) => {
-								setValue(newValue)
-								setOpenModal(true)
-							}}
-							slots={{ actionBar: CustomActionBar }}
-						/>
-					</LocalizationProvider>
+					<Calendar
+						onChange={handleChange}
+						value={date}
+						/* allowPartialRange={true}
+						selectRange={true} */
+					/>
 				</main>
 			</div>
-			{openModal && <FormModal openModal={openModal} setOpenModal={setOpenModal} />}
+			{openModal && <FormModal openModal={openModal} setOpenModal={setOpenModal} date={date}/>}
 		</div>
 	)
 }
