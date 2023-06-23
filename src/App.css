@@ -23,7 +23,8 @@ li {
 }
 
 .calendar {
-	border-left: 1px solid rgba(89, 89, 87, 0.5)
+	border-left: 1px solid rgba(89, 89, 87, 0.5);
+	padding-left: 3em;
 }
 
 .calendar header {
@@ -40,14 +41,12 @@ li {
 
 .calendar__container {
 	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	align-items: flex-start;
-	justify-content: flex-end;
-	margin: 10px 0;
+	flex-direction: column-reverse;
+	align-items: center;
 }
 
-.calendar__container__add {
+
+.calendar__container__add > svg {
 	display: none;
 }
 
@@ -58,12 +57,11 @@ li {
 .calendar__container__content {
 	display: flex;
 	max-width: 100%;
-	flex-basis: 420px;
+	flex-basis: 350px;
 	flex-direction: column;
 	flex-grow: 100;
 	align-items: stretch;
 	padding-top: 2em;
-	padding-left: 3em;
 }
 
 .calendar__container__content .react-calendar {
@@ -96,11 +94,10 @@ li {
 	top: 50%;
 	left: 50%;
 	transform: translate(0%, -50%);
-	width: 20vw;
+	width: 25vw;
 	max-height: 70vh;
 	background-color: white;
 	border: 2px solid #000;
-	box-shadow: 24;
 	border-radius: 10px;
 	padding: 20px
 }
@@ -138,6 +135,10 @@ li {
 	background: none;
 	font-size: 20px;
 	cursor: pointer;
+}
+
+.eventDate {
+	display: flex;
 }
 
 @media (max-width: 760px) {
