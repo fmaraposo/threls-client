@@ -25,5 +25,8 @@ const createRequest = async (url = '', method, data = null) => {
 export const getAllEvents = async () => await createRequest(apiURL + '', 'GET')
 export const getEventsOfToday = async () =>
 	await createRequest(apiURL + `/${new Date().toISOString()}`, 'GET')
-export const postEvents = async (data) => await createRequest(apiURL, 'POST', data)
+export const saveEvent = async (data) => {
+	const response = await createRequest(apiURL + '/saveEvent', 'POST', data)
+	return response
+}
 export const deleteEvent = async (id) => await createRequest(apiURL, 'DELETE')

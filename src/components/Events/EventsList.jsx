@@ -3,7 +3,7 @@ import EventItem from './EventItem'
 import threlsLogo from '../../assets/threls.svg'
 import { getEventsOfToday } from '../../utils/RequestFunctions'
 
-const EventsList = ({date}) => {
+const EventsList = ({ date }) => {
 	const [events, setEvents] = useState([])
 
 	useEffect(() => {

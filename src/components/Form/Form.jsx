@@ -4,6 +4,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { useForm, Controller } from 'react-hook-form'
 import { TimePicker, LocalizationProvider, DatePicker } from '@mui/x-date-pickers'
 import { Cancel } from '@mui/icons-material'
+import { saveEvent } from '../../utils/RequestFunctions'
 
 const inputStyles = {
 	margin: 1,
@@ -33,7 +34,7 @@ const FormModal = ({ openModal, setOpenModal, date }) => {
 	})
 
 	const handleClose = () => setOpenModal(false)
-	const onSubmit = (data) => {
+	const onSubmit = async (data) => {
 		const { startDate, endDate, startTime, endTime, ...restData } = data
 
 		const formatDate = (date, time) => {
@@ -60,6 +61,8 @@ const FormModal = ({ openModal, setOpenModal, date }) => {
 		}
 
 		console.log('Data To Submit', formData)
+		const saveEvents = await saveEvent(formData)
+		console.log(saveEvents)
 	}
 
 	// TODO - Validation so from date is before to date
