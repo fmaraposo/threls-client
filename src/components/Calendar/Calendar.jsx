@@ -7,7 +7,12 @@ import 'react-calendar/dist/Calendar.css'
 
 const CalendarComponent = ({ setDate, date }) => {
 	const [openModal, setOpenModal] = useState(false)
-	const handleChange = (e) => setDate(e)
+	const handleChange = (e) => {
+		e.setHours(new Date(e).getHours())
+		e.setMinutes(new Date(e).getMinutes() - new Date().getTimezoneOffset())
+		e.setSeconds(0)
+		setDate(e)
+	}
 
 	return (
 		<div className="calendar">
@@ -16,7 +21,17 @@ const CalendarComponent = ({ setDate, date }) => {
 					<Tooltip title="Add your event here">
 						<AddCircle onClick={() => setOpenModal(true)} fontSize="large" color="primary" />
 					</Tooltip>
-					<Button type="submit" variant="contained" onClick={() => setOpenModal(true)}>
+					<Button
+						type="submit"
+						variant="contained"
+						sx={{
+							backgroundColor: '#4D24ED',
+							'&:hover': {
+								backgroundColor: 'rgba(77, 36, 237, 0.7)',
+							},
+						}}
+						onClick={() => setOpenModal(true)}
+					>
 						<EventAvailable sx={{ marginRight: 1 }} />
 						Add your Event
 					</Button>
@@ -31,7 +46,7 @@ const CalendarComponent = ({ setDate, date }) => {
 					/>
 				</main>
 			</div>
-			{openModal && <FormModal openModal={openModal} setOpenModal={setOpenModal} date={date}/>}
+			{openModal && <FormModal openModal={openModal} setOpenModal={setOpenModal} date={date} />}
 		</div>
 	)
 }
