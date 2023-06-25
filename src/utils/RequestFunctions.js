@@ -23,10 +23,23 @@ const createRequest = async (url = '', method, data = null) => {
 }
 
 export const getAllEvents = async () => await createRequest(apiURL + '', 'GET')
-export const getEventsOfToday = async () =>
-	await createRequest(apiURL + `/${new Date().toISOString()}`, 'GET')
+
+export const getEventsOfToday = async (date) => {
+	const timezoneOffset = new Date(date).getTimezoneOffset()
+
+	// Handle Timezone
+	const dateToFetch = new Date(date)
+	dateToFetch.setHours(0)
+	dateToFetch.setMinutes(0 - timezoneOffset)
+	dateToFetch.setSeconds(0)
+
+	const response = await createRequest(apiURL + `/${dateToFetch.toISOString()}`, 'GET')
+	return response
+}
+
 export const saveEvent = async (data) => {
 	const response = await createRequest(apiURL + '/saveEvent', 'POST', data)
 	return response
 }
+
 export const deleteEvent = async (id) => await createRequest(apiURL, 'DELETE')

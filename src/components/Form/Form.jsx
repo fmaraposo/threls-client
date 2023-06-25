@@ -34,33 +34,30 @@ const FormModal = ({ openModal, setOpenModal, date }) => {
 	})
 
 	const handleClose = () => setOpenModal(false)
+
 	const onSubmit = async (data) => {
 		const { startDate, endDate, startTime, endTime, ...restData } = data
 
-		const formatDate = (date, time) => {
-			let formatTime
-			// start or end  time has been changed on the form the value is an instance of date object
-			if (time instanceof Date) formatTime = time
-			// start or end  time has not been changed on the form the value is an UNIX timestamp
-			else formatTime = new Date(time)
+		// Get the user's local timezone offset in minutes
+		const timezoneOffset = new Date().getTimezoneOffset()
 
-			return new Date(
-				date.getFullYear(),
-				date.getMonth(),
-				date.getUTCDate(),
-				formatTime.getHours(),
-				formatTime.getMinutes(),
-				0
-			)
-		}
+		// Convert startTime and endTime to local time
+		const startDateTime = new Date(startDate)
+		startDateTime.setHours(new Date(startTime).getHours())
+		startDateTime.setMinutes(new Date(startTime).getMinutes() - timezoneOffset)
+		startDateTime.setSeconds(0)
 
+		const endDateTime = new Date(endDate)
+		endDateTime.setHours(new Date(endTime).getHours())
+		endDateTime.setMinutes(new Date(endTime).getMinutes() - timezoneOffset)
+		endDateTime.setSeconds(0)
+
+		// Create the formData object with adjusted startDate and endDate
 		const formData = {
-			startDate: formatDate(startDate, startTime),
-			endDate: formatDate(endDate, endTime),
+			startDate: startDateTime.toISOString(),
+			endDate: endDateTime.toISOString(),
 			...restData,
 		}
-
-		console.log('Data To Submit', formData)
 		const saveEvents = await saveEvent(formData)
 		console.log(saveEvents)
 	}
