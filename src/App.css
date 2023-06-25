@@ -15,7 +15,6 @@ li {
 	width: 70vw;
 	height: 65vh;
 	border-radius: 50px;
-	padding: 40px;
 	background-color: white;
 	-webkit-box-shadow: 4px 6px 20px 0px rgba(191, 191, 191, 1);
 	-moz-box-shadow: 4px 6px 20px 0px rgba(191, 191, 191, 1);
@@ -25,33 +24,18 @@ li {
 .calendar {
 	border-left: 1px solid rgba(89, 89, 87, 0.5);
 	padding-left: 3em;
-}
-
-.calendar header {
-	background-color: #323639;
-	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-	padding: 20px;
-	color: white;
-}
-
-.calendar header h1 {
-	font-size: inherit;
-	margin: 0;
+	padding-right: 40px;
 }
 
 .calendar__container {
 	display: flex;
 	flex-direction: column-reverse;
 	align-items: center;
+	margin-top: 20px;
 }
-
 
 .calendar__container__add > svg {
 	display: none;
-}
-
-.calendar__container > * > * {
-	margin: 10px;
 }
 
 .calendar__container__content {
@@ -64,29 +48,80 @@ li {
 	padding-top: 2em;
 }
 
-.calendar__container__content .react-calendar {
+.react-calendar {
 	margin: 0 auto;
 	border-radius: 5px;
+	border: none;
+}
+
+.react-calendar__tile--active {
+	background-color: #4d24ed;
+}
+
+.react-calendar__tile--active:hover {
+	background-color: rgba(77, 36, 237, 0.7);
+}
+
+.react-calendar__tile--active:enabled:hover {
+	background-color: rgba(77, 36, 237, 0.7);
+}
+
+.react-calendar__tile--active:enabled:focus {
+	background-color: rgba(77, 36, 237, 0.7);
+}
+
+.react-calendar__tile--now {
+	background-color: #c9dcb3;
+}
+
+.react-calendar__tile--now:enabled:hover {
+	background-color: rgba(201, 220, 179, 0.7);
+}
+
+.react-calendar__tile--now:enabled:focus {
+	background-color: rgba(201, 220, 179, 0.7);
 }
 
 .events-list-container {
 	display: flex;
 	flex-direction: column;
-	/* border: 1px solid black */
+	padding-right: 40px;
+	width: 100%;
+	background-color: #c9dcb3;
+	border-top-left-radius: 50px;
+	border-bottom-left-radius: 50px;
 }
 
-.logo-container {
-	display: flex;
+.logo {
+	position: absolute;
+	top: 30px;
+	left: 50px;
 }
 
 .list-events-container {
 	display: flex;
-	margin-top: 30px;
+	flex-direction: column;
 }
 
-.no-events-container {
-	border: 1px solid black;
-	width: 80%
+.events {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: 25px;
+}
+
+.day {
+	font-size: 8em;
+	color: #ffff;
+	margin: 0;
+}
+
+.weekDay {
+	font-weight: bold;
+	font-size: 2em;
+	color: #ffff;
 }
 
 .model-dialog {
@@ -99,14 +134,7 @@ li {
 	background-color: white;
 	border: 2px solid #000;
 	border-radius: 10px;
-	padding: 20px
-}
-
-.MuiDialogActions-root
-	.MuiDialogActions-spacing
-	.MuiPickersLayout-actionBar
-	.css-hlj6pa-MuiDialogActions-root {
-	display: none;
+	padding: 20px;
 }
 
 .modal-header {
@@ -114,7 +142,7 @@ li {
 	flex-direction: row-reverse;
 	justify-content: space-between;
 	align-items: center;
-	padding:20px;
+	padding: 20px;
 	border-bottom: 1px solid black;
 }
 
@@ -141,6 +169,29 @@ li {
 	display: flex;
 }
 
+.event-item-container {
+	border: none;
+	max-height: 10vh;
+	border-radius: 10px;
+	padding: 1em;
+	margin-bottom: 20px;
+	background-color: #f8f8f7;
+	display: flex;
+	cursor: pointer;
+}
+
+.event-item-container:hover {
+	-webkit-animation: slide-right 1.5s;
+	animation: slide-right 1.5s;
+}
+
+.event-item-container > span {
+	display: 'inline-block';
+	margin-right: 10px;
+	color: black;
+	font-weight: bold;
+}
+
 @media (max-width: 760px) {
 	/* For Mobile */
 
@@ -164,4 +215,25 @@ li {
 
 @media (min-width: 761px) and (max-width: 1200px) {
 	/* For tablet */
+}
+
+@-webkit-keyframes slide-right {
+	0% {
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
+	}
+	100% {
+		-webkit-transform: translateX(100px);
+		transform: translateX(100px);
+	}
+}
+@keyframes slide-right {
+	0% {
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
+	}
+	100% {
+		-webkit-transform: translateX(100px);
+		transform: translateX(100px);
+	}
 }
