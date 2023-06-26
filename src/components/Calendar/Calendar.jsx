@@ -14,6 +14,7 @@ const CalendarComponent = ({
 	setOpenModal,
 	editEvent,
 	setEditEvent,
+	setError
 }) => {
 	const handleChange = (e) => {
 		e.setHours(new Date(e).getHours())
@@ -63,6 +64,7 @@ const CalendarComponent = ({
 					setEvents={setEvents}
 					setEditEvent={setEditEvent}
 					editEvent={editEvent}
+					setError={setError}
 				/>
 			)}
 		</div>

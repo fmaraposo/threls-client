@@ -209,6 +209,27 @@ li {
 	margin-right: 20px;
 }
 
+.alert {
+	border-radius: 20px !important;
+    width: 20%;
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    background-color: #CC2936 !important;
+    font-family: inherit;
+    font-size: 16px !important;
+	display: flex;
+
+}
+
+.MUI-Alert-icon {
+	color: #FFFF !important;
+}
+
+.alert:first-child {
+	color: #FFFF !important;
+}
+
 @media (max-width: 760px) {
 	/* For Mobile */
 
