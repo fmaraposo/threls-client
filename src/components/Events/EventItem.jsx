@@ -3,7 +3,7 @@ import { Box, Grow } from '@mui/material'
 import { format, parseISO, isSameDay } from 'date-fns'
 import { Edit, DeleteOutline, Celebration, Check, Close } from '@mui/icons-material'
 import { deleteEvent } from '../../utils/RequestFunctions'
-import { handleState } from '../../utils/HandleStateFunctions'
+import { handleState, formatTime } from '../../utils/GlobalFunctions'
 
 const EventItem = ({ events, setEvents, setOpenModal, setEditEvent }) => {
 	const [deleteItem, setDeleteItem] = useState(false)
@@ -38,8 +38,7 @@ const EventItem = ({ events, setEvents, setOpenModal, setEditEvent }) => {
 														  format(parseISO(event.endDate), 'dd/MM/yyyy')}
 												</span>
 												<span className="event-date time">
-													{format(parseISO(event.startDate), 'HH:mm')} -{' '}
-													{format(parseISO(event.endDate), 'HH:mm')}
+													{formatTime(event.startDate)} - {formatTime(event.endDate)}
 												</span>
 
 												<span className="event-notes">{event.notes}</span>
