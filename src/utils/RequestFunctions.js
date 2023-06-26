@@ -42,4 +42,7 @@ export const saveEvent = async (data) => {
 	return response
 }
 
-export const deleteEvent = async (id) => await createRequest(apiURL, 'DELETE')
+export const deleteEvent = async (id) => {
+	const response = await createRequest(apiURL + `/deleteEvent/${id}`, 'DELETE')
+	return response
+}
