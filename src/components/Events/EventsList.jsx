@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 import EventItem from './EventItem'
 import { getEventsOfToday } from '../../utils/RequestFunctions'
+import { parseISO } from 'date-fns'
 
 const EventsList = ({ date, events, setEvents, setOpenModal, setEditEvent }) => {
-
 	useEffect(() => {
 		async function getTodayEvents(date) {
 			const response = await getEventsOfToday(date)
-			setEvents(response)
-			return response
+			const sortEvents = response.sort((a, b) => parseISO(a.startDate) - parseISO(b.startDate))
+			setEvents(sortEvents)
+			return sortEvents
 		}
 		getTodayEvents(date)
 	}, [date])

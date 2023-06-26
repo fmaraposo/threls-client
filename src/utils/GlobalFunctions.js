@@ -17,11 +17,10 @@ export const handleState = (events, event, setNewState, action) => {
 		}
 	}
 
-	console.log(index)
-	console.log(newState)
+	const sortState = newState.sort((a, b) => parseISO(a.startDate) - parseISO(b.startDate))
 
-	setNewState(newState)
-	return newState
+	setNewState(sortState)
+	return sortState
 }
 
 export const adjustTimeZone = (date) => {
