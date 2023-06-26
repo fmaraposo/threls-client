@@ -21,6 +21,7 @@ const FormModal = ({
 	events,
 	editEvent,
 	setEditEvent,
+	setError
 }) => {
 	const defaultStartTime = new Date().setHours(8, 0, 0, 0) // this comes as UNIX timestamp
 	const defaultEndTime = new Date().setHours(17, 0, 0, 0) // this comes as UNIX timestamp
@@ -82,7 +83,8 @@ const FormModal = ({
 		}
 
 		if (eventSaved.error) {
-			//Handle Error here
+			setTimeout(() => setOpenModal(false), 500)
+			setError(eventSaved.error)
 		} else {
 			handleState(events, eventSaved.event, setEvents)
 			// To prevent the modal from closing immediately after submitting
