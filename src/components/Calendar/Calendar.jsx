@@ -5,8 +5,16 @@ import { Tooltip, Button } from '@mui/material'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 
-const CalendarComponent = ({ setDate, date }) => {
-	const [openModal, setOpenModal] = useState(false)
+const CalendarComponent = ({
+	setDate,
+	date,
+	setEvents,
+	events,
+	openModal,
+	setOpenModal,
+	editEvent,
+	setEditEvent,
+}) => {
 	const handleChange = (e) => {
 		e.setHours(new Date(e).getHours())
 		e.setMinutes(new Date(e).getMinutes() - new Date().getTimezoneOffset())
@@ -46,7 +54,17 @@ const CalendarComponent = ({ setDate, date }) => {
 					/>
 				</main>
 			</div>
-			{openModal && <FormModal openModal={openModal} setOpenModal={setOpenModal} date={date} />}
+			{openModal && (
+				<FormModal
+					openModal={openModal}
+					setOpenModal={setOpenModal}
+					date={date}
+					events={events}
+					setEvents={setEvents}
+					setEditEvent={setEditEvent}
+					editEvent={editEvent}
+				/>
+			)}
 		</div>
 	)
 }

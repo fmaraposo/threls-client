@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import EventItem from './EventItem'
 import { getEventsOfToday } from '../../utils/RequestFunctions'
 
-const EventsList = ({ date }) => {
-	const [events, setEvents] = useState([])
+const EventsList = ({ date, events, setEvents, setOpenModal, setEditEvent }) => {
+
 	useEffect(() => {
 		async function getTodayEvents(date) {
 			const response = await getEventsOfToday(date)
@@ -21,13 +21,18 @@ const EventsList = ({ date }) => {
 	return (
 		<div className="events-list-container">
 			<section className="list-events-container">
-				<div className='events'>
-					<h1 className='day'>{date.getUTCDate()}</h1>
-					<span className='weekDay'>{getWeekDay(date)}</span>
+				<div className="events">
+					<h1 className="day">{date.getUTCDate()}</h1>
+					<span className="weekDay">{getWeekDay(date)}</span>
 				</div>
 				{events.length > 0 && (
 					<ul className="list-events">
-						<EventItem events={events} />
+						<EventItem
+							events={events}
+							setEvents={setEvents}
+							setOpenModal={setOpenModal}
+							setEditEvent={setEditEvent}
+						/>
 					</ul>
 				)}
 			</section>

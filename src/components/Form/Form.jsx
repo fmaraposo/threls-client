@@ -3,15 +3,25 @@ import { Modal, TextField, Button } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { useForm, Controller } from 'react-hook-form'
 import { TimePicker, LocalizationProvider, DatePicker } from '@mui/x-date-pickers'
+import { parseISO } from 'date-fns'
 import { Cancel } from '@mui/icons-material'
 import { saveEvent } from '../../utils/RequestFunctions'
+import { handleState } from '../../utils/HandleStateFunctions'
 
 const inputStyles = {
 	margin: 1,
 	width: '95%',
 }
 
-const FormModal = ({ openModal, setOpenModal, date }) => {
+const FormModal = ({
+	openModal,
+	setOpenModal,
+	date,
+	setEvents,
+	events,
+	editEvent,
+	setEditEvent,
+}) => {
 	const defaultStartTime = new Date().setHours(8, 0, 0, 0) // this comes as UNIX timestamp
 	const defaultEndTime = new Date().setHours(17, 0, 0, 0) // this comes as UNIX timestamp
 	const dateFormat = 'dd/MM/yyyy'
@@ -24,16 +34,19 @@ const FormModal = ({ openModal, setOpenModal, date }) => {
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
-			startDate: date,
-			endDate: date,
+			startDate: editEvent ? parseISO(editEvent.startDate) : date,
+			endDate: editEvent ? parseISO(editEvent.endDate) : date,
 			startTime: defaultStartTime,
 			endTime: defaultEndTime,
-			title: '',
-			notes: '',
+			title: editEvent?.title || '',
+			notes: editEvent?.notes || '',
 		},
 	})
 
-	const handleClose = () => setOpenModal(false)
+	const handleClose = () => {
+		if (editEvent) setEditEvent(null)
+		setOpenModal(false)
+	}
 
 	const onSubmit = async (data) => {
 		const { startDate, endDate, startTime, endTime, ...restData } = data
@@ -58,8 +71,21 @@ const FormModal = ({ openModal, setOpenModal, date }) => {
 			endDate: endDateTime.toISOString(),
 			...restData,
 		}
-		const saveEvents = await saveEvent(formData)
-		console.log(saveEvents)
+		let eventSaved
+
+		if (editEvent) {
+			// Handle here if the event is being edited
+		} else {
+			eventSaved = await saveEvent(formData)
+		}
+
+		if (eventSaved.error) {
+			//Handle Error here
+		} else {
+			handleState(events, eventSaved.event, setEvents)
+			// To prevent the modal from closing immediately after submitting
+			setTimeout(() => setOpenModal(false), 1000)
+		}
 	}
 
 	// TODO - Validation so from date is before to date
@@ -71,12 +97,11 @@ const FormModal = ({ openModal, setOpenModal, date }) => {
 					<button onClick={handleClose} className="close">
 						<Cancel />
 					</button>
-					<h3>Add your event</h3>
+					<h3>{editEvent ? 'Edit your event' : 'Add your event'}</h3>
 				</div>
 				<div className="modal-body">
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<TextField
-							defaultValue=""
 							{...register('title', { required: true })}
 							error={Boolean(errors.eventTitle)}
 							helperText={errors.title && 'Event Title is required'}
