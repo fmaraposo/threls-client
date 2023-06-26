@@ -5,8 +5,8 @@ import { useForm, Controller } from 'react-hook-form'
 import { TimePicker, LocalizationProvider, DatePicker } from '@mui/x-date-pickers'
 import { parseISO } from 'date-fns'
 import { Cancel } from '@mui/icons-material'
-import { saveEvent } from '../../utils/RequestFunctions'
-import { handleState } from '../../utils/HandleStateFunctions'
+import { saveEvent, updateEvent } from '../../utils/RequestFunctions'
+import { handleState, adjustTimeZone } from '../../utils/GlobalFunctions'
 
 const inputStyles = {
 	margin: 1,
@@ -36,8 +36,8 @@ const FormModal = ({
 		defaultValues: {
 			startDate: editEvent ? parseISO(editEvent.startDate) : date,
 			endDate: editEvent ? parseISO(editEvent.endDate) : date,
-			startTime: defaultStartTime,
-			endTime: defaultEndTime,
+			startTime: editEvent ? adjustTimeZone(editEvent.startDate) : defaultStartTime,
+			endTime: editEvent ? adjustTimeZone(editEvent.endDate) : defaultEndTime,
 			title: editEvent?.title || '',
 			notes: editEvent?.notes || '',
 		},
@@ -75,6 +75,8 @@ const FormModal = ({
 
 		if (editEvent) {
 			// Handle here if the event is being edited
+			eventSaved = await updateEvent(formData, editEvent.id)
+			setEditEvent(null) // reset the state
 		} else {
 			eventSaved = await saveEvent(formData)
 		}
@@ -87,8 +89,6 @@ const FormModal = ({
 			setTimeout(() => setOpenModal(false), 1000)
 		}
 	}
-
-	// TODO - Validation so from date is before to date
 
 	return (
 		<Modal open={openModal} onClose={handleClose}>
@@ -207,7 +207,17 @@ const FormModal = ({
 							name="notes"
 							{...register('notes')}
 						/>
-						<Button type="submit" variant="contained" sx={inputStyles}>
+						<Button
+							type="submit"
+							variant="contained"
+							sx={{
+								...inputStyles,
+								backgroundColor: '#4D24ED',
+								'&:hover': {
+									backgroundColor: 'rgba(77, 36, 237, 0.7)',
+								},
+							}}
+						>
 							Submit
 						</Button>
 					</form>

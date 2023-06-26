@@ -22,8 +22,6 @@ const createRequest = async (url = '', method, data = null) => {
 	return response.json()
 }
 
-export const getAllEvents = async () => await createRequest(apiURL + '', 'GET')
-
 export const getEventsOfToday = async (date) => {
 	const timezoneOffset = new Date(date).getTimezoneOffset()
 
@@ -33,7 +31,12 @@ export const getEventsOfToday = async (date) => {
 	dateToFetch.setMinutes(0 - timezoneOffset)
 	dateToFetch.setSeconds(0)
 
-	const response = await createRequest(apiURL + `/${dateToFetch.toISOString()}`, 'GET')
+	const endOfDate = new Date(dateToFetch.getTime() + 24 * 60 * 60 * 1000 - 1)
+
+	const response = await createRequest(
+		apiURL + `/${dateToFetch.toISOString()}/${endOfDate.toISOString()}`,
+		'GET'
+	)
 	return response
 }
 
@@ -44,5 +47,11 @@ export const saveEvent = async (data) => {
 
 export const deleteEvent = async (id) => {
 	const response = await createRequest(apiURL + `/deleteEvent/${id}`, 'DELETE')
+	return response
+}
+
+export const updateEvent = async (data, id) => {
+	const response = await createRequest(apiURL + `/updateEvent/${id}`, 'PUT', data)
+	console.log(response)
 	return response
 }
