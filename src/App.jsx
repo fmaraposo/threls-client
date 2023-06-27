@@ -32,16 +32,22 @@ function App() {
 			{error && (
 				<Collapse in={error}>
 					<Alert
-						icon={<StyledIcon />}
+						icon={<StyledIcon className="alert__icon" />}
 						severity="error"
 						className="alert"
-						action={<Cancel onClick={() => setError(null)} sx={{ cursor: 'pointer' }} />}
+						action={
+							<Cancel
+								className="alert__cancel-icon"
+								onClick={() => setError(null)}
+								sx={{ cursor: 'pointer' }}
+							/>
+						}
 					>
 						{error}
 					</Alert>
 				</Collapse>
 			)}
-			<Box className="app-container">
+			<Box className="app__container">
 				<Events
 					date={date}
 					events={events}

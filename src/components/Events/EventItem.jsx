@@ -15,14 +15,14 @@ const EventItem = ({ events, setEvents, setOpenModal, setEditEvent }) => {
 					const eventIndex = events.findIndex((e) => e._id === event._id)
 					const isEventOnSameDay = isSameDay(parseISO(event.startDate), parseISO(event.endDate))
 					return (
-						<div key={index} className="event-item-container-parent">
+						<div key={index} className="event-item__container-parent">
 							<Grow
 								in={eventIndex === index}
 								style={{ transformOrigin: '0 0 0' }}
 								timeout={eventIndex === index ? (index + 1) * 750 : 0}
 							>
-								<Box className="event-item-container">
-									<div className="event-item-details">
+								<Box className="event-item__container">
+									<div className="event-item__details">
 										{deleteItem && deleteItem === event._id ? (
 											<span>Are you sure you want to delete this event ?</span>
 										) : (
@@ -45,7 +45,7 @@ const EventItem = ({ events, setEvents, setOpenModal, setEditEvent }) => {
 											</>
 										)}
 									</div>
-									<div className="event-item-actions">
+									<div className="event-item__actions">
 										{deleteItem && deleteItem === event._id ? (
 											<>
 												<Check

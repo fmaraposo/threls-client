@@ -9,7 +9,7 @@ li {
 	list-style: none;
 }
 
-.app-container {
+.app__container {
 	display: flex;
 	justify-content: space-between;
 	width: 70vw;
@@ -86,7 +86,7 @@ li {
 	display: none;
 }
 
-.events-list-container {
+.events-list__container {
 	display: flex;
 	flex-direction: column;
 	padding-right: 40px;
@@ -103,7 +103,7 @@ li {
 	width: 15%;
 }
 
-.list-events-container {
+.list-events__container {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
@@ -185,7 +185,7 @@ li {
 	display: flex;
 }
 
-.event-item-container {
+.event-item__container {
 	max-height: 4vh;
 	border-radius: 10px;
 	padding: 1em;
@@ -195,23 +195,23 @@ li {
 	cursor: pointer;
 }
 
-.event-item-container:hover {
+.event-item__container:hover {
 	-webkit-animation: slide-right 1.5s;
 	animation: slide-right 1.5s;
 }
 
-.event-item-details {
+.event-item__details {
 	color: black;
 	font-weight: bold;
 	width: 70%;
 	display: flex;
 }
 
-.event-item-details > span {
+.event-item__details > span {
 	margin-right: 20px;
 }
 
-.event-item-actions {
+.event-item__actions {
 	width: 30%;
 	display: flex;
 	justify-content: flex-end;
@@ -262,14 +262,30 @@ li {
 		width: 50%;
 	}
 
-	.app-container {
+	.alert {
+		width: fit-content;
+		font-size: 12px !important;
+		background-color: rgba(204, 41, 54, 0.8) !important;
+		top: 30px;
+		right: 15px;
+	}
+
+	.alert__icon {
+		font-size: 20px !important;
+	}
+
+	.alert__cancel-icon {
+		font-size: 20px !important;
+	}
+
+	.app__container {
 		height: 100%;
 		display: flex;
 		flex-direction: column;
 		margin: 40px 0px;
 	}
 
-	.events-list-container {
+	.events-list__container {
 		width: 100%;
 		height: 70%;
 		padding-right: 0px;
@@ -294,27 +310,27 @@ li {
 		padding: 0 20px;
 	}
 
-	.event-item-container-parent {
+	.event-item__container-parent {
 		display: flex;
 		justify-content: center;
 	}
 
-	.event-item-container {
+	.event-item__container {
 		display: block;
 		max-height: 8vh;
 		width: fit-content;
 		display: flex;
 	}
 
-	.event-item-actions {
+	.event-item__actions {
 		margin-right: 5px;
 	}
 
-	.event-item-actions > svg {
+	.event-item__actions > svg {
 		margin-right: 5px;
 	}
 
-	.event-item-details > span {
+	.event-item__details > span {
 		font-size: 12px;
 		margin-right: 10px;
 	}

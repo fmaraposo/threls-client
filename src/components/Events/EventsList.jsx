@@ -22,8 +22,8 @@ const EventsList = ({ date, events, setEvents, setOpenModal, setEditEvent }) => 
 	}
 
 	return (
-		<div className="events-list-container">
-			<section className="list-events-container">
+		<div className="events-list__container">
+			<section className="list-events__container">
 				<div className="events">
 					<h1 className="day">{date.getUTCDate()}</h1>
 					<span className="weekDay">{getWeekDay(date)}</span>
