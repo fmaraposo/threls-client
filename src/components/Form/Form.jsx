@@ -128,12 +128,7 @@ const FormModal = ({
 											label="From"
 											maxDate={watch('endDate')}
 											value={value || date}
-											onChange={(date) => {
-												// startDate can be equal or before to  endDate
-												if (isFirstDateAfter(watch('endDate'), date)) onChange(date)
-												else if (watch('endDate') == watch('startDate')) onChange(date)
-												else onChange(watch('endDate'))
-											}}
+											onChange={(date) => onChange(date)}
 											sx={{ ...inputStyles, width: '50%' }}
 											slotProps={{
 												textField: {
@@ -153,11 +148,13 @@ const FormModal = ({
 											minutesStep={15}
 											label="From"
 											ampm={false}
+											maxTime={watch('endTime')}
 											value={value || defaultStartTime}
 											onChange={(date) => onChange(date)}
 											sx={{ ...inputStyles, width: '50%' }}
 											slotProps={{
 												textField: {
+													readOnly: true,
 													helperText: errors?.startTime ? 'Start Time is required' : '',
 												},
 											}}
@@ -178,18 +175,14 @@ const FormModal = ({
 											label="To"
 											minDate={watch('startDate')}
 											value={value || date}
-											onChange={(date) => {
-												// endDate can be equal or after to startDate
-												if (isFirstDateAfter(date, watch('startDate'))) onChange(date)
-												else if (watch('endDate') == watch('startDate')) onChange(date)
-												else onChange(watch('startDate'))
-											}}
-											sx={inputStyles}
+											onChange={(date) => onChange(date)}
 											slotProps={{
 												textField: {
+													readOnly: true,
 													helperText: errors?.endDate ? 'To Date is required' : '',
 												},
 											}}
+											sx={inputStyles}
 										/>
 									)}
 								/>
@@ -202,6 +195,7 @@ const FormModal = ({
 											<TimePicker
 												timeSteps={{ hours: 1, minutes: 15 }}
 												minutesStep={15}
+												minTime={watch('startTime')}
 												label="To"
 												ampm={false}
 												value={value || defaultEndTime}
@@ -209,6 +203,7 @@ const FormModal = ({
 												sx={inputStyles}
 												slotProps={{
 													textField: {
+														readOnly: true,
 														helperText: errors?.endTime ? 'End Time is required' : '',
 													},
 												}}
