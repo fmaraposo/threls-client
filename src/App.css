@@ -82,6 +82,10 @@ li {
 	background-color: rgba(201, 220, 179, 0.7);
 }
 
+.calendar__container__content > .MuiFormControl-root {
+	display: none;
+}
+ 
 .events-list-container {
 	display: flex;
 	flex-direction: column;
@@ -96,6 +100,7 @@ li {
 	position: absolute;
 	top: 30px;
 	left: 50px;
+	width: 15%
 }
 
 .list-events-container {
@@ -175,7 +180,7 @@ li {
 }
 
 .event-item-container {
-	max-height: 3vh;
+	max-height: 4vh;
 	border-radius: 10px;
 	padding: 1em;
 	margin-bottom: 20px;
@@ -210,67 +215,142 @@ li {
 
 .alert {
 	border-radius: 20px !important;
-    width: 20%;
-    position: absolute;
-    top: 30px;
-    right: 50px;
-    background-color: #CC2936 !important;
-    font-family: inherit;
-    font-size: 16px !important;
+	width: 20%;
+	position: absolute;
+	top: 30px;
+	right: 50px;
+	background-color: #cc2936 !important;
+	font-family: inherit;
+	font-size: 16px !important;
 	display: flex;
-
 }
 
 .MUI-Alert-icon {
-	color: #FFFF !important;
+	color: #ffff !important;
 }
 
 .alert:first-child {
-	color: #FFFF !important;
+	color: #ffff !important;
 }
 
 @media (max-width: 760px) {
 	/* For Mobile */
 
+	body {
+		display: block !important;
+	}
+
+	#root {
+		margin: 50px 0px;
+		height: 85vh;
+		max-width: unset;
+		display: flex;
+		justify-content: center;
+	}
+
+	.logo {
+		width: 30%
+	}
+
 	.app-container {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.events-list-container {
+		width: 100%;
+		height: 70%;
+		padding-right: 0px;
+		border-top-right-radius: 50px;
+		border-bottom-right-radius: 0px;
+		border-bottom-left-radius: 0px;
+	}
+
+	.events {
+		padding: 30px 0px 10px 0px;
+	}
+
+	.day {
+		font-size: 5em;
+	}
+
+	.weekDay {
+		font-size: 1.5em;
+	}
+
+	.list-events {
+		padding: 0 20px;
+	}
+
+	.event-item-container {
+		display: block;
+		max-height: 8vh;
+		width: fit-content;
+		display: flex;
+	}
+
+	.event-item-actions {
+		margin-right: 5px
+	}
+
+	.event-item-actions > svg{
+		margin-right: 5px;
+	}
+
+	.event-item-details > span {
+		font-size: 12px;
+	}
+
+	.date {
+		display: none;
+	}
+
+	.event-notes {
+		display: none;
+	}
+
+	.calendar {
+		border-left: none;
+		border: none;
+		height: 30%;
+		padding: 0px 20px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.react-calendar {
+		display: none;
+	}
+
+	.calendar__container__content > .MuiFormControl-root {
 		display: block;
 	}
 
 	.calendar__container__content {
-		flex-direction: unset;
-		max-width: 50vw;
+		flex-basis: 0px;
 	}
 
-	.calendar__container__add {
-		display: 'block';
+	.calendar__container__add  {
+		margin-top: 3vh;
+	}
+
+	.calendar__container__add > svg {
+		display: block;
+	}
+
+	.calendar__container__add > button {
+		display: none;
 	}
 
 	.model-dialog {
-		max-width: 80vw;
+		width: 80vw;
+		transform: translate(-50%, -50%);
 	}
 }
 
 @media (min-width: 761px) and (max-width: 1200px) {
 	/* For tablet */
 }
-
-/* @-webkit-keyframes slide-right {
-	0% {
-		-webkit-transform: translateX(0);
-		transform: translateX(0);
-	}
-	100% {
-		-webkit-transform: translateX(75px);
-		transform: translateX(75px);
-	}
-}
-@keyframes slide-right {
-	0% {
-		-webkit-transform: translateX(0);
-		transform: translateX(0);
-	}
-	100% {
-		-webkit-transform: translateX(75px);
-		transform: translateX(75px);
-	}
-} */

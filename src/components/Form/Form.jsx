@@ -3,7 +3,7 @@ import { Modal, TextField, Button } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { useForm, Controller } from 'react-hook-form'
 import { TimePicker, LocalizationProvider, DatePicker } from '@mui/x-date-pickers'
-import { parseISO } from 'date-fns'
+import { parseISO, isAfter, isEqual } from 'date-fns'
 import { Cancel } from '@mui/icons-material'
 import { saveEvent, updateEvent } from '../../utils/RequestFunctions'
 import { handleState, adjustTimeZone } from '../../utils/GlobalFunctions'
@@ -11,6 +11,11 @@ import { handleState, adjustTimeZone } from '../../utils/GlobalFunctions'
 const inputStyles = {
 	margin: 1,
 	width: '95%',
+}
+
+const isFirstDateAfter = (startDate, endDate) => {
+	if (isAfter(startDate, endDate) || isEqual(startDate, endDate)) return true
+	else return false
 }
 
 const FormModal = ({
@@ -21,7 +26,7 @@ const FormModal = ({
 	events,
 	editEvent,
 	setEditEvent,
-	setError
+	setError,
 }) => {
 	const defaultStartTime = new Date().setHours(8, 0, 0, 0) // this comes as UNIX timestamp
 	const defaultEndTime = new Date().setHours(17, 0, 0, 0) // this comes as UNIX timestamp
@@ -76,7 +81,8 @@ const FormModal = ({
 
 		if (editEvent) {
 			// Handle here if the event is being edited
-			eventSaved = await updateEvent(formData, editEvent.id)
+			eventSaved = await updateEvent(formData, editEvent._id)
+			console.log(eventSaved)
 			setEditEvent(null) // reset the state
 		} else {
 			eventSaved = await saveEvent(formData)
@@ -123,7 +129,10 @@ const FormModal = ({
 											label="From"
 											maxDate={watch('endDate')}
 											value={value || date}
-											onChange={(date) => onChange(date)}
+											onChange={(date) => {
+												if (isFirstDateAfter(date, watch('endDate'))) return onChange(null)
+												else onChange(date)
+											}}
 											sx={{ ...inputStyles, width: '50%' }}
 											slotProps={{
 												textField: {
@@ -167,7 +176,11 @@ const FormModal = ({
 											label="To"
 											minDate={watch('startDate')}
 											value={value || date}
-											onChange={(date) => onChange(date)}
+											onChange={(date) => {
+												console.log(isFirstDateAfter(date, watch('startDate')))
+												if (isFirstDateAfter(date, watch('startDate'))) onChange(date)
+												else onChange(null)
+											}}
 											sx={inputStyles}
 											slotProps={{
 												textField: {

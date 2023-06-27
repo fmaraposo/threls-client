@@ -28,7 +28,7 @@ function App() {
 
 	return (
 		<>
-			<img src={threlsLogo} alt="threls logo" className="logo" width={'15%'} />
+			<img src={threlsLogo} alt="threls logo" className="logo"/>
 			{error && (
 				<Collapse in={error}>
 					<Alert
