@@ -49,7 +49,6 @@ const EventItem = ({ events, setEvents, setOpenModal, setEditEvent }) => {
 										{deleteItem && deleteItem === event._id ? (
 											<>
 												<Check
-													// sx={{ marginRight: '20px' }}
 													onClick={async () => {
 														await deleteEvent(event._id)
 														setDeleteItem(false)

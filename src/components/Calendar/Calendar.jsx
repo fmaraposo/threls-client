@@ -20,6 +20,7 @@ const CalendarComponent = ({
 	setError,
 }) => {
 	const handleChange = (e) => {
+		
 		e.setHours(new Date(e).getHours())
 		e.setMinutes(new Date(e).getMinutes() - new Date().getTimezoneOffset())
 		e.setSeconds(0)
@@ -31,6 +32,7 @@ const CalendarComponent = ({
 			<div className="calendar__container">
 				<div className="calendar__container__add">
 					<Tooltip title="Add your event here">
+						{/* For mobile view */}
 						<AddCircle onClick={() => setOpenModal(true)} fontSize="large" color="primary" />
 					</Tooltip>
 					<Button
@@ -50,9 +52,13 @@ const CalendarComponent = ({
 				</div>
 
 				<main className="calendar__container__content">
-					<Calendar onChange={handleChange} value={date} />
+					<Calendar
+						onChange={handleChange}
+						value={date}
+					/>
 
 					<LocalizationProvider dateAdapter={AdapterDateFns}>
+						{/* For mobile view */}
 						<MobileDatePicker onChange={handleChange} value={date} format={'dd/MM/yyyy'} />
 					</LocalizationProvider>
 				</main>
