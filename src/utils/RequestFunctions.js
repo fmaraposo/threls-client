@@ -1,4 +1,4 @@
-const apiURL = 'http://localhost:3000/api'
+const apiURL = 'https://red-calm-perch.cyclic.app/api'
 
 const createRequest = async (url = '', method, data = null) => {
 	let fetchParms = {
