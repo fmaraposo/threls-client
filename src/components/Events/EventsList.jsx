@@ -4,7 +4,6 @@ import { getEventsOfToday } from '../../utils/RequestFunctions'
 import { parseISO } from 'date-fns'
 
 const EventsList = ({ date, events, setEvents, setOpenModal, setEditEvent }) => {
-
 	useEffect(() => {
 		async function getTodayEvents(date) {
 			const response = await getEventsOfToday(date)
@@ -28,16 +27,18 @@ const EventsList = ({ date, events, setEvents, setOpenModal, setEditEvent }) => 
 					<h1 className="day">{date.getUTCDate()}</h1>
 					<span className="weekDay">{getWeekDay(date)}</span>
 				</div>
-				{events.length > 0 && (
-					<ul className="list-events">
+				<ul className="list-events">
+					{events.length > 0 ? (
 						<EventItem
 							events={events}
 							setEvents={setEvents}
 							setOpenModal={setOpenModal}
 							setEditEvent={setEditEvent}
 						/>
-					</ul>
-				)}
+					) : (
+						<h1 className='list-events__no-events-message'>No events for this day...</h1>
+					)}
+				</ul>
 			</section>
 		</div>
 	)

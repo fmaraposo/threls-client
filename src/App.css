@@ -238,8 +238,9 @@ li {
 	color: #ffff !important;
 }
 
+/* For Mobile */
+
 @media (max-width: 760px) {
-	/* For Mobile */
 	html {
 		height: 100vh;
 		display: flex;
@@ -308,6 +309,11 @@ li {
 
 	.list-events {
 		padding: 0 20px;
+	}
+
+	.list-events__no-events-message {
+		font-size: 25px;
+		text-align: center;
 	}
 
 	.event-item__container-parent {
@@ -386,6 +392,151 @@ li {
 	}
 }
 
+/* For tablet */
 @media (min-width: 761px) and (max-width: 1200px) {
-	/* For tablet */
+	html {
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+	}
+
+	body {
+		display: block !important;
+	}
+
+	#root {
+		margin: 50px 0px;
+		height: 60vh;
+		max-width: unset;
+		display: flex;
+		justify-content: center;
+	}
+
+	.logo {
+		width: 30%;
+	}
+
+	.alert {
+		width: fit-content;
+		font-size: 12px !important;
+		background-color: rgba(204, 41, 54, 0.8) !important;
+		top: 30px;
+		right: 15px;
+	}
+
+	.alert__icon {
+		font-size: 20px !important;
+	}
+
+	.alert__cancel-icon {
+		font-size: 20px !important;
+	}
+
+	.app__container {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		margin: 50px 0px;
+	}
+
+	.events-list__container {
+		width: 100%;
+		height: 70%;
+		padding-right: 0px;
+		border-top-right-radius: 50px;
+		border-bottom-right-radius: 0px;
+		border-bottom-left-radius: 0px;
+	}
+
+	.events {
+		padding: 30px 0px 10px 0px;
+	}
+
+	.day {
+		font-size: 5em;
+	}
+
+	.weekDay {
+		font-size: 1.5em;
+	}
+
+	.list-events {
+		padding: 0 20px;
+	}
+
+	.list-events__no-events-message {
+		font-size: 40px;
+		text-align: center;
+	}
+
+	.event-item__container-parent {
+		display: flex;
+		justify-content: center;
+	}
+
+	.event-item__container {
+		display: block;
+		max-height: 8vh;
+		width: 85%;
+		display: flex;
+	}
+
+	.event-item__actions {
+		margin-right: 5px;
+	}
+
+	.event-item__actions > svg {
+		margin-right: 5px;
+	}
+
+	.event-item__details > span {
+		font-size: 14px;
+		margin-right: 20px;
+	}
+
+	.event-item__details > span:last-child {
+		margin-right: 0px;
+	}
+
+	.calendar {
+		border-left: none;
+		border: none;
+		height: 30%;
+		padding: 0px 20px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.react-calendar {
+		display: none;
+	}
+
+	.calendar__container__content > .MuiFormControl-root {
+		display: block;
+	}
+
+	.calendar__container__content {
+		flex-basis: 0px;
+		padding-top: 0px;
+		margin-top: 0px;
+	}
+
+	.calendar__container__add {
+		margin-top: 1vh;
+	}
+
+	.calendar__container__add > svg {
+		display: block;
+	}
+
+	.calendar__container__add > button {
+		display: none;
+	}
+
+	.model-dialog {
+		width: 80vw;
+		transform: translate(-50%, -80%);
+	}
 }
