@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Box, Grow } from '@mui/material'
 import { format, parseISO, isSameDay } from 'date-fns'
-import { Edit, DeleteOutline, Celebration, Check, Close } from '@mui/icons-material'
+import { Edit, DeleteOutline, EventBusy, Check, Close } from '@mui/icons-material'
 import { deleteEvent } from '../../utils/RequestFunctions'
 import { handleState, formatTime } from '../../utils/GlobalFunctions'
 
@@ -12,7 +12,7 @@ const EventItem = ({ events, setEvents, setOpenModal, setEditEvent }) => {
 		<Box sx={{ height: 180 }}>
 			<Box>
 				{events.map((event, index) => {
-					const eventIndex = events.findIndex((e) => e.id === event.id)
+					const eventIndex = events.findIndex((e) => e._id === event._id)
 					const isEventOnSameDay = isSameDay(parseISO(event.startDate), parseISO(event.endDate))
 					return (
 						<div key={index} style={{ overflow: 'scroll' }}>
@@ -23,12 +23,12 @@ const EventItem = ({ events, setEvents, setOpenModal, setEditEvent }) => {
 							>
 								<Box className="event-item-container">
 									<div className="event-item-details">
-										{deleteItem && deleteItem === event.id ? (
+										{deleteItem && deleteItem === event._id ? (
 											<span>Are you sure you want to delete this event ?</span>
 										) : (
 											<>
 												<span className="event-icon">
-													<Celebration />
+													<EventBusy />
 												</span>
 												<span className="event-title">{event.title}</span>
 												<span className="event-date date">
@@ -46,12 +46,12 @@ const EventItem = ({ events, setEvents, setOpenModal, setEditEvent }) => {
 										)}
 									</div>
 									<div className="event-item-actions">
-										{deleteItem && deleteItem === event.id ? (
+										{deleteItem && deleteItem === event._id ? (
 											<>
 												<Check
 													sx={{ marginRight: '20px' }}
 													onClick={async () => {
-														await deleteEvent(event.id)
+														await deleteEvent(event._)
 														setDeleteItem(false)
 														handleState(events, event, setEvents, 'delete')
 													}}
@@ -67,7 +67,7 @@ const EventItem = ({ events, setEvents, setOpenModal, setEditEvent }) => {
 														setOpenModal(true)
 													}}
 												/>
-												<DeleteOutline onClick={() => setDeleteItem(event.id)} />
+												<DeleteOutline onClick={() => setDeleteItem(event._id)} />
 											</>
 										)}
 									</div>

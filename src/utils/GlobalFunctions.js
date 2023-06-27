@@ -2,8 +2,8 @@ import { format, parseISO } from 'date-fns'
 
 export const handleState = (events, event, setNewState, action) => {
 	const newState = [...events]
-	const index = newState.findIndex((e) => e.id === event.id)
-
+	const index = newState.findIndex((e) => e._id === event._id)
+	
 	if (index === -1) {
 		// Adding Event
 		newState.push(event)
