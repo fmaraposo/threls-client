@@ -282,6 +282,11 @@ li {
 		padding: 0 20px;
 	}
 
+	.event-item-container-parent {
+		display: flex;
+		justify-content: center;
+	}
+
 	.event-item-container {
 		display: block;
 		max-height: 8vh;
