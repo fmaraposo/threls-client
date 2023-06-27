@@ -82,7 +82,6 @@ const FormModal = ({
 		if (editEvent) {
 			// Handle here if the event is being edited
 			eventSaved = await updateEvent(formData, editEvent._id)
-			console.log(eventSaved)
 			setEditEvent(null) // reset the state
 		} else {
 			eventSaved = await saveEvent(formData)

@@ -85,7 +85,7 @@ li {
 .calendar__container__content > .MuiFormControl-root {
 	display: none;
 }
- 
+
 .events-list-container {
 	display: flex;
 	flex-direction: column;
@@ -100,7 +100,7 @@ li {
 	position: absolute;
 	top: 30px;
 	left: 50px;
-	width: 15%
+	width: 15%;
 }
 
 .list-events-container {
@@ -248,7 +248,7 @@ li {
 	}
 
 	.logo {
-		width: 30%
+		width: 30%;
 	}
 
 	.app-container {
@@ -295,16 +295,16 @@ li {
 	}
 
 	.event-item-actions {
-		margin-right: 5px
+		margin-right: 5px;
 	}
 
-	.event-item-actions > svg{
+	.event-item-actions > svg {
 		margin-right: 5px;
 	}
 
 	.event-item-details > span {
 		font-size: 12px;
-		margin-right: 10px
+		margin-right: 10px;
 	}
 
 	.date {
@@ -338,7 +338,7 @@ li {
 		flex-basis: 0px;
 	}
 
-	.calendar__container__add  {
+	.calendar__container__add {
 		margin-top: 3vh;
 	}
 

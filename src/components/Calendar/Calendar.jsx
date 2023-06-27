@@ -2,8 +2,8 @@ import React from 'react'
 import FormModal from '../Form/Form'
 import { AddCircle, EventAvailable } from '@mui/icons-material'
 import { Tooltip, Button } from '@mui/material'
-import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
@@ -17,7 +17,7 @@ const CalendarComponent = ({
 	setOpenModal,
 	editEvent,
 	setEditEvent,
-	setError
+	setError,
 }) => {
 	const handleChange = (e) => {
 		e.setHours(new Date(e).getHours())
@@ -50,16 +50,11 @@ const CalendarComponent = ({
 				</div>
 
 				<main className="calendar__container__content">
-					<Calendar
-						onChange={handleChange}
-						value={date}
-					/>
+					<Calendar onChange={handleChange} value={date} />
 
 					<LocalizationProvider dateAdapter={AdapterDateFns}>
-						<MobileDatePicker onChange={handleChange} value={date} format={'dd/MM/yyyy'}/>
+						<MobileDatePicker onChange={handleChange} value={date} format={'dd/MM/yyyy'} />
 					</LocalizationProvider>
-
-					
 				</main>
 			</div>
 			{openModal && (

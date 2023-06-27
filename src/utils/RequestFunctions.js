@@ -52,6 +52,5 @@ export const deleteEvent = async (id) => {
 
 export const updateEvent = async (data, id) => {
 	const response = await createRequest(apiURL + `/updateEvent/${id}`, 'PUT', data)
-	console.log(response)
 	return response
 }

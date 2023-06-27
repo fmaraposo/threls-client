@@ -15,7 +15,7 @@ const EventItem = ({ events, setEvents, setOpenModal, setEditEvent }) => {
 					const eventIndex = events.findIndex((e) => e._id === event._id)
 					const isEventOnSameDay = isSameDay(parseISO(event.startDate), parseISO(event.endDate))
 					return (
-						<div key={index} className='event-item-container-parent' style={{ overflow: 'scroll' }}>
+						<div key={index} className="event-item-container-parent" style={{ overflow: 'scroll' }}>
 							<Grow
 								in={eventIndex === index}
 								style={{ transformOrigin: '0 0 0' }}
