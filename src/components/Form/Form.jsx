@@ -129,8 +129,10 @@ const FormModal = ({
 											maxDate={watch('endDate')}
 											value={value || date}
 											onChange={(date) => {
-												if (isFirstDateAfter(date, watch('endDate'))) return onChange(null)
-												else onChange(date)
+												// startDate can be equal or before to  endDate
+												if (isFirstDateAfter(watch('endDate'), date)) onChange(date)
+												else if (watch('endDate') == watch('startDate')) onChange(date)
+												else onChange(watch('endDate'))
 											}}
 											sx={{ ...inputStyles, width: '50%' }}
 											slotProps={{
@@ -150,6 +152,7 @@ const FormModal = ({
 											timeSteps={{ hours: 1, minutes: 15, seconds: 0 }}
 											minutesStep={15}
 											label="From"
+											ampm={false}
 											value={value || defaultStartTime}
 											onChange={(date) => onChange(date)}
 											sx={{ ...inputStyles, width: '50%' }}
@@ -176,9 +179,10 @@ const FormModal = ({
 											minDate={watch('startDate')}
 											value={value || date}
 											onChange={(date) => {
-												console.log(isFirstDateAfter(date, watch('startDate')))
+												// endDate can be equal or after to startDate
 												if (isFirstDateAfter(date, watch('startDate'))) onChange(date)
-												else onChange(null)
+												else if (watch('endDate') == watch('startDate')) onChange(date)
+												else onChange(watch('startDate'))
 											}}
 											sx={inputStyles}
 											slotProps={{
@@ -199,6 +203,7 @@ const FormModal = ({
 												timeSteps={{ hours: 1, minutes: 15 }}
 												minutesStep={15}
 												label="To"
+												ampm={false}
 												value={value || defaultEndTime}
 												onChange={(date) => onChange(date)}
 												sx={inputStyles}
