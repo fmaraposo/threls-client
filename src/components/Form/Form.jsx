@@ -13,11 +13,6 @@ const inputStyles = {
 	width: '95%',
 }
 
-const isFirstDateAfter = (startDate, endDate) => {
-	if (isAfter(startDate, endDate) || isEqual(startDate, endDate)) return true
-	else return false
-}
-
 const FormModal = ({
 	openModal,
 	setOpenModal,
@@ -28,8 +23,9 @@ const FormModal = ({
 	setEditEvent,
 	setError,
 }) => {
-	const defaultStartTime = new Date().setHours(8, 0, 0, 0) // this comes as UNIX timestamp
-	const defaultEndTime = new Date().setHours(17, 0, 0, 0) // this comes as UNIX timestamp
+	// set the default start and end time, result comes in UNIX timestamp
+	const defaultStartTime = new Date().setHours(8, 0, 0, 0)
+	const defaultEndTime = new Date().setHours(17, 0, 0, 0)
 	const dateFormat = 'dd/MM/yyyy'
 
 	const {
@@ -77,6 +73,7 @@ const FormModal = ({
 			endDate: endDateTime.toISOString(),
 			...restData,
 		}
+
 		let eventSaved
 
 		if (editEvent) {

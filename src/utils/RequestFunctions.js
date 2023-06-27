@@ -1,4 +1,8 @@
-const apiURL = 'https://red-calm-perch.cyclic.app/api'
+let apiURL = 'http://localhost:3000/api'
+
+if (window.location.hostname === 'calendarapplication.netlify.app') {
+	apiURL = 'https://red-calm-perch.cyclic.app/api'
+}
 
 const createRequest = async (url = '', method, data = null) => {
 	let fetchParms = {
