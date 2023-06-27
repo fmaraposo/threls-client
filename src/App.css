@@ -202,7 +202,6 @@ li {
 }
 
 .event-item-details > span {
-	display: 'inline-block';
 	margin-right: 20px;
 }
 
@@ -300,6 +299,7 @@ li {
 
 	.event-item-details > span {
 		font-size: 12px;
+		margin-right: 10px
 	}
 
 	.date {
